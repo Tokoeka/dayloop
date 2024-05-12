@@ -17,7 +17,6 @@ import {
 import { args, cliExecuteThrow, external, halloween, tapped, willAscend, withMacro } from "./util";
 import {
   adv1,
-  availableAmount,
   canInteract,
   getShop,
   guildStoreAvailable,
@@ -46,7 +45,7 @@ const RUNAWAY_MACRO = StrictMacro.if_(
   )
   .runaway();
 
-const RAFFLE_TICKET_COUNT = 11;
+//const RAFFLE_TICKET_COUNT = 11;
 const HALLOWEEN_FAMILIAR = $familiar`Red-Nosed Snapper`;
 const HALLOWEEN_OUTFIT = "Ceramic Suit";
 
@@ -165,7 +164,7 @@ export const farm: Quest<Task> = {
     },
     {
       name: "keeping-tabs",
-      ready: () => canInteract() && !willAscend(),
+      ready: () => canInteract() && willAscend(),
       completed: () => get("_keepingTabs", "") !== "",
       do: () => external("keeping_tabs"),
       post: (): void => {
@@ -178,12 +177,12 @@ export const farm: Quest<Task> = {
         }
       },
     },
-    {
+    /* {
       name: "raffle",
       ready: () => canInteract() && !willAscend(),
       completed: () => availableAmount($item`raffle ticket`) >= RAFFLE_TICKET_COUNT,
       do: () =>
         cliExecuteThrow(`raffle ${RAFFLE_TICKET_COUNT - availableAmount($item`raffle ticket`)}`),
-    },
+    }, */
   ],
 };

@@ -1,8 +1,6 @@
 import { Quest, Task } from "grimoire-kolmafia";
 import {
-  abort,
   canInteract,
-  drink,
   handlingChoice,
   myAdventures,
   myAscensions,
@@ -10,8 +8,6 @@ import {
   pvpAttacksLeft,
   retrieveItem,
   runChoice,
-  use,
-  useSkill,
   visitUrl,
 } from "kolmafia";
 import { args, cliExecuteThrow, external, tapped } from "../util";
@@ -22,8 +18,6 @@ import {
   $skill,
   ascend,
   get,
-  getRemainingLiver,
-  getRemainingSpleen,
   have,
   prepareAscension,
   questStep,
@@ -78,14 +72,14 @@ export const smol: Quest<Task> = {
       ready: () => myPath() === smolPath && questStep("questL13Final") === 13,
       completed: () => canInteract(),
       do: (): void => {
-        drink($item`astral pilsner`);
+        //drink($item`astral pilsner`);
         visitUrl("place.php?whichplace=nstower&action=ns_11_prism");
       },
-      post: (): void => {
+      /* post: (): void => {
         if (get("sweat") < 75) {
           abort("Not enough sweat");
         }
-      },
+      }, */
     },
     {
       name: "hagnk",
@@ -96,7 +90,7 @@ export const smol: Quest<Task> = {
       },
       post: () => cliExecuteThrow("breakfast"),
     },
-    {
+    /* {
       name: "smol sober up (sweat it out)",
       ready: () => canInteract() && get("_sweatOutSomeBoozeUsed") < 3,
       completed: () => tapped(false) || getRemainingLiver() >= 0,
@@ -120,7 +114,7 @@ export const smol: Quest<Task> = {
       do: (): void => {
         use($item`synthetic dog hair pill`);
       },
-    },
+    }, */
     {
       name: "liver of steel",
       ready: () => questStep("questL06Friar") === 999,

@@ -40,23 +40,23 @@ export const args = Args.create("halfloop", "Loop your brains out (on live tv)",
   garbo_command: Args.string({ help: "how to invoke garbo", default: "garbo" }),
   keeping_tabs_command: Args.string({
     help: "how to invoke keeping tabs",
-    default: "keeping-tabs-dev",
+    default: "keeping-tabs",
   }),
   consume_command: Args.string({
     help: "how to invoke CONSUME",
     default: "CONSUME",
   }),
-  phccs_gash_command: Args.string({
-    help: "how to invoke phccs_gash",
-    default: "phccs_gash",
+  hccsAscend_command: Args.string({
+    help: "how to invoke hccsAscend",
+    default: "hccsAscend",
   }),
-  phccs_command: Args.string({
-    help: "how to invoke phccs",
-    default: "phccs",
+  asmohccs_command: Args.string({
+    help: "how to invoke asmohccs",
+    default: "asmohccs",
   }),
   class: Args.custom<Class>(
     {
-      help: "what class to run PHCCS as",
+      help: "what class to run CS as",
       default: $class`Pastamancer`,
     },
     (v: string) => toClass(v),
@@ -100,8 +100,8 @@ export function printArgs(): void {
   print(`* invoke garbo using (${args.garbo_command})`);
   print(`* invoke keeping-tabs using (${args.keeping_tabs_command})`);
   print(`* invoke CONSUME using (${args.consume_command})`);
-  print(`* invoke phccs_gash using (${args.phccs_gash_command})`);
-  print(`* invoke phccs using (${args.phccs_gash_command})`);
+  print(`* invoke phccs_gash using (${args.hccsAscend_command})`);
+  print(`* invoke phccs using (${args.asmohccs_command})`);
   print(`* ascend in path (${args.path})`);
   print(`* ascend as (${args.class})`);
 }
@@ -126,7 +126,7 @@ export function willAscend(): boolean {
   return args.ascend && get("ascensionsToday") === 0;
 }
 
-const devExternalScripts = ["garbo", "keeping_tabs", "consume", "phccs", "phccs_gash"] as const;
+const devExternalScripts = ["garbo", "keeping_tabs", "consume", "asmohccs", "hccsAscend"] as const;
 type DevExternalScript = typeof devExternalScripts[number];
 const externalScripts = ["autoscend", "freecandy", "combo", "loopsmol", "loopcasual"] as const;
 type ExternalScript = typeof externalScripts[number];
